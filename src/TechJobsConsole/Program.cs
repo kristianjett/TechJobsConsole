@@ -100,7 +100,14 @@ namespace TechJobsConsole
                 }
 
                 string input = Console.ReadLine();
+                while (!int.TryParse(input, out choiceIdx))
+                {
+                    Console.WriteLine("\nPlease enter a valid option:");
+                    input = Console.ReadLine();
+                    
+                }
                 choiceIdx = int.Parse(input);
+                
 
                 if (choiceIdx < 0 || choiceIdx >= choiceKeys.Length)
                 {
@@ -118,7 +125,25 @@ namespace TechJobsConsole
 
         private static void PrintJobs(List<Dictionary<string, string>> someJobs)
         {
-            Console.WriteLine("PrintJobs is not implemented yet");
+            //Console.WriteLine("PrintJobs is not implemented yet");
+
+            if (someJobs.Count > 0)
+            {
+                foreach (Dictionary<string, string> job in someJobs)
+                {
+                    foreach (KeyValuePair<string, string> kvp in job)
+                    {
+                        Console.WriteLine($"{kvp.Key}: {kvp.Value}");
+                    }
+
+                    Console.WriteLine("\n");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Sorry, no matches were found.");
+            }
+            
         }
     }
 }
