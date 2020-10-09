@@ -49,7 +49,7 @@ namespace TechJobsConsole
                         }
                     }
                 }
-                else // choice is "search"
+                else // actionChoice is "search"
                 {
                     // How does the user want to search (e.g. by skill or employer)
                     string columnChoice = GetUserSelection("Search", columnChoices);
@@ -63,7 +63,8 @@ namespace TechJobsConsole
                     // Fetch results
                     if (columnChoice.Equals("all"))
                     {
-                        Console.WriteLine("Search all fields not yet implemented.");
+                        searchResults = JobData.FindByValue(searchTerm);
+                        PrintJobs(searchResults);
                     }
                     else
                     {
@@ -111,7 +112,7 @@ namespace TechJobsConsole
 
                 if (choiceIdx < 0 || choiceIdx >= choiceKeys.Length)
                 {
-                    Console.WriteLine("Invalid choices. Try again.");
+                    Console.WriteLine("Invalid choice. Try again.");
                 }
                 else
                 {
@@ -131,12 +132,13 @@ namespace TechJobsConsole
             {
                 foreach (Dictionary<string, string> job in someJobs)
                 {
+                    Console.WriteLine("*****");
                     foreach (KeyValuePair<string, string> kvp in job)
                     {
                         Console.WriteLine($"{kvp.Key}: {kvp.Value}");
                     }
 
-                    Console.WriteLine("\n");
+                    Console.WriteLine("*****\n");
                 }
             }
             else

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Reflection;
 using System.Text;
@@ -49,10 +51,41 @@ namespace TechJobsConsole
             {
                 string aValue = row[column];
 
-                if (aValue.Contains(value))
+                if (aValue.ToLower().Contains(value.ToLower()))
                 {
                     jobs.Add(row);
                 }
+            }
+            return jobs;
+        }
+
+        /* 
+         * The FindByValue method should:
+         * 1. Search for a string within each of the columns
+         * 2. Not allow duplicates (If key exists, then don't print it twice)
+         * 3. Make it abstracted and adaptable to changing input.
+         * 4. Use loops and collection methods rather than calling FindByColumnAndValue for each separate column
+         * 5. Use FindByColumnAndValue method for guidance on how to write FindByValue.
+         * 6. You'll need to call this method somewhere in Main. Good luck finding it! :)
+         */
+        public static List<Dictionary<string, string>> FindByValue(string value)
+        {
+
+            LoadData();
+
+
+            List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
+            
+            foreach (Dictionary<string, string> row in AllJobs)
+            {
+                foreach(KeyValuePair<string, string> job in row)
+                {
+                    if (job.Value.ToLower().Contains(value.ToLower()) && !jobs.Contains(row))
+                    {
+                        jobs.Add(row);
+                    }
+                }
+               
             }
 
             return jobs;
