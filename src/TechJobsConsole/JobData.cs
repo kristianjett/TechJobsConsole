@@ -58,16 +58,6 @@ namespace TechJobsConsole
             }
             return jobs;
         }
-
-        /* 
-         * The FindByValue method should:
-         * 1. Search for a string within each of the columns
-         * 2. Not allow duplicates (If key exists, then don't print it twice)
-         * 3. Make it abstracted and adaptable to changing input.
-         * 4. Use loops and collection methods rather than calling FindByColumnAndValue for each separate column
-         * 5. Use FindByColumnAndValue method for guidance on how to write FindByValue.
-         * 6. You'll need to call this method somewhere in Main. Good luck finding it! :)
-         */
         public static List<Dictionary<string, string>> FindByValue(string value)
         {
 
